@@ -30,25 +30,41 @@ let wPressed = .9;
 let sPressed = .9;
 let dPressed = 20;
 let aPressed = -20;
+let spacing = 1;
 let timeForMove = true;
 function moveForward(){
+    
     timeForMove = false;
     setTimeout(function(){
         timeForMove = true;
-        wPressed+=.1
-        if(sPressed > 0){sPressed+=.1};
+        if(wPressed>(.2)){
+        wPressed-=.1
+        spacing++;
+        /*
         cube1.style.transform = `scale(${1 * wPressed}) translateX(${1 * aPressed}px)`
         cube2.style.transform = `scale(${1 * wPressed}) translateX(${1 * aPressed}px)`
+        */
+       
+        cube1.style.transform = `perspective(${1000*wPressed}px) translateX(${-15 * spacing}px)`
+        cube2.style.transform = `perspective(${1000*wPressed}px) translateX(${15 * spacing}px)`
+       }
+       sPressed = wPressed;
     }, 100);
 }
 function moveBack(){
     timeForMove = false;
     setTimeout(function(){
     timeForMove = true;
-    sPressed-=.1
-    if(wPressed > 0){wPressed-=.1};
+    sPressed+=.1
+    spacing--;
+    /*
     cube1.style.transform = `scale(${1 * sPressed}) translateX(${1 * aPressed}px)`
     cube2.style.transform = `scale(${1 * sPressed}) translateX(${1 * aPressed}px)`
+    */
+    if(sPressed<.99){
+    cube1.style.transform = `perspective(${1000*sPressed}px) translateX(${-15 * spacing}px)`
+    cube2.style.transform = `perspective(${1000*sPressed}px) translateX(${15 * spacing}px)`
+    }
 }, 100);
 }
 function moveRight(){
@@ -78,9 +94,8 @@ document.addEventListener('keydown', event => {
         if(timeForMove == true)moveForward();
     }
     else if(event.code == 'KeyS'){
-        if(sPressed>0.21){
+        
             if(timeForMove == true)moveBack();
-    }
     }
     else if(event.code == 'KeyD'){
             if(timeForMove == true)moveRight();
