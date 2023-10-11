@@ -5,24 +5,33 @@ body{
     height: 100vh;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 .container {
-    width: 400px;
+    width: 75vw;
     height: 400px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     perspective: 800px;
 }
 
 .cube {
-    position: relative;
+    position: absolute;
     width: 200px;
     height: 200px;
     transform-style: preserve-3d;
     animation: cubeRotate 10s linear infinite;
+    transition: .5s;
+}
+#cube1{
+    left: 0vw;
 }
 
+#cube2 {
+    right: 0vw;
+}
+/*
 @keyframes cubeRotate {
 0% { 
     transform: rotateY(0deg) rotateX(0deg); 
@@ -44,7 +53,7 @@ body{
     transform: rotateY(-720deg) rotateX(0deg); 
 } 
 }
-
+*/
 .cube > div {
     position: absolute;
     width: 100%;
